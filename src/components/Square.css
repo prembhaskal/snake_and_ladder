@@ -156,26 +156,40 @@
 
 @media (max-width: 768px) {
   .square {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     font-size: 10px;
   }
   
   .square-number {
-    font-size: 8px;
+    font-size: 14px;
+    padding: 2px 4px;
+    font-weight: 900;
   }
   
+  .player-piece {
+    width: 16px;
+    height: 16px;
+    font-size: 8px;
+  }
+}
 
+@media (max-width: 480px) {
+  .square {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .square-number {
+    font-size: 12px;
+    padding: 1px 3px;
+    font-weight: 900;
+  }
   
   .player-piece {
     width: 14px;
     height: 14px;
     font-size: 7px;
-  }
-  
-  .square-number {
-    font-size: 8px;
-    padding: 0px 2px;
   }
 }
 
