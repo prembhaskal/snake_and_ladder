@@ -100,3 +100,33 @@ const getPlayerColor = (index: number): string => {
   const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4'];
   return colors[index % colors.length];
 };
+
+// Animation utility for step-by-step movement
+export const animatePlayerMovement = (
+  fromPosition: number,
+  toPosition: number,
+  onStep: (currentPosition: number) => void,
+  onComplete: () => void,
+  stepDelay: number = 200
+): void => {
+  if (fromPosition === toPosition) {
+    onComplete();
+    return;
+  }
+
+  let currentPos = fromPosition;
+  const direction = toPosition > fromPosition ? 1 : -1;
+  
+  const moveStep = () => {
+    currentPos += direction;
+    onStep(currentPos);
+    
+    if (currentPos === toPosition) {
+      onComplete();
+    } else {
+      setTimeout(moveStep, stepDelay);
+    }
+  };
+  
+  setTimeout(moveStep, stepDelay);
+};

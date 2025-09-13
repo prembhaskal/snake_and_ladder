@@ -1,0 +1,106 @@
+.special-move-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  pointer-events: none;
+  animation: specialMessageAppear 2.5s ease-out forwards;
+}
+
+.special-move-message.snake {
+  color: #ff0000;
+}
+
+.special-move-message.ladder {
+  color: #00aa00;
+}
+
+.message-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 20px 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 3px solid currentColor;
+}
+
+.message-icon {
+  font-size: 48px;
+  margin-bottom: 10px;
+  animation: iconBounce 0.6s ease-out;
+}
+
+.message-text {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes specialMessageAppear {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  30% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  80% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+}
+
+@keyframes iconBounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+}
+
+/* Snake-specific styling */
+.special-move-message.snake .message-content {
+  background: linear-gradient(135deg, #ffebee, #ffcdd2);
+  border-color: #d32f2f;
+}
+
+.special-move-message.snake .message-icon {
+  filter: drop-shadow(2px 2px 4px rgba(211, 47, 47, 0.3));
+}
+
+/* Ladder-specific styling */
+.special-move-message.ladder .message-content {
+  background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+  border-color: #388e3c;
+}
+
+.special-move-message.ladder .message-icon {
+  filter: drop-shadow(2px 2px 4px rgba(56, 142, 60, 0.3));
+}
+
+@media (max-width: 768px) {
+  .message-content {
+    padding: 15px 20px;
+  }
+  
+  .message-icon {
+    font-size: 36px;
+  }
+  
+  .message-text {
+    font-size: 18px;
+  }
+}
