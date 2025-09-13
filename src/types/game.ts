@@ -3,6 +3,8 @@ export interface Player {
   name: string;
   color: string;
   position: number;
+  animatedPosition?: number; // Current position during animation
+  specialAnimation?: 'snake' | 'ladder'; // Track special animation state
 }
 
 export interface Snake {
@@ -24,6 +26,8 @@ export interface GameState {
   isRolling: boolean;
   canRollAgain: boolean;
   gameHistory: GameMove[];
+  isAnimating?: boolean; // Track if player movement animation is in progress
+  specialMoveMessage?: string; // Message to display for special moves
 }
 
 export interface GameMove {

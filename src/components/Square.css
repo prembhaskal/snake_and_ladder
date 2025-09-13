@@ -71,6 +71,7 @@
   flex-wrap: wrap;
   justify-content: center;
   z-index: 15;
+  transition: all 0.2s ease-in-out;
 }
 
 .player-piece {
@@ -87,6 +88,70 @@
   border: 2px solid rgba(255, 255, 255, 0.8);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   z-index: 3;
+  transition: all 0.2s ease-in-out;
+  animation: playerAppear 0.3s ease-out;
+}
+
+@keyframes playerAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Snake bite animation - shake and fall */
+@keyframes snakeBite {
+  0% { transform: scale(1) rotate(0deg); }
+  10% { transform: scale(1.2) rotate(-5deg); background-color: #ff0000; }
+  20% { transform: scale(1.1) rotate(5deg); background-color: #ff3333; }
+  30% { transform: scale(1.2) rotate(-3deg); background-color: #ff0000; }
+  40% { transform: scale(1.1) rotate(3deg); background-color: #ff3333; }
+  50% { transform: scale(1.3) rotate(0deg); background-color: #ff0000; }
+  60% { transform: scale(0.8) translateY(10px); opacity: 0.7; }
+  80% { transform: scale(0.6) translateY(20px); opacity: 0.3; }
+  100% { transform: scale(1) translateY(0px); opacity: 1; }
+}
+
+/* Ladder climb animation - bounce up with glow */
+@keyframes ladderClimb {
+  0% { transform: scale(1) translateY(0px); }
+  20% { transform: scale(1.1) translateY(-5px); background-color: #00ff00; box-shadow: 0 0 15px #00ff00; }
+  40% { transform: scale(1.2) translateY(-10px); background-color: #33ff33; box-shadow: 0 0 20px #33ff33; }
+  60% { transform: scale(1.3) translateY(-15px); background-color: #00ff00; box-shadow: 0 0 25px #00ff00; }
+  80% { transform: scale(1.1) translateY(-5px); background-color: #33ff33; box-shadow: 0 0 15px #33ff33; }
+  100% { transform: scale(1) translateY(0px); box-shadow: none; }
+}
+
+/* Special animation classes */
+.player-piece.snake-animation {
+  animation: snakeBite 1.5s ease-in-out;
+}
+
+.player-piece.ladder-animation {
+  animation: ladderClimb 1.2s ease-out;
+}
+
+/* Square flash effects */
+.square.snake-flash {
+  animation: snakeSquareFlash 1s ease-in-out;
+}
+
+.square.ladder-flash {
+  animation: ladderSquareFlash 1s ease-in-out;
+}
+
+@keyframes snakeSquareFlash {
+  0%, 100% { background-color: #ff4444; }
+  50% { background-color: #ff0000; box-shadow: 0 0 20px #ff0000; }
+}
+
+@keyframes ladderSquareFlash {
+  0%, 100% { background-color: #44ff44; }
+  50% { background-color: #00ff00; box-shadow: 0 0 20px #00ff00; }
 }
 
 @media (max-width: 768px) {

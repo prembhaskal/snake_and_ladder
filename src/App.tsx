@@ -1,11 +1,12 @@
 
 import GameBoard from './components/GameBoard';
 import GameControls from './components/GameControls';
+import SpecialMoveMessage from './components/SpecialMoveMessage';
 import { useGame } from './hooks/useGame';
 import './App.css';
 
 function App() {
-  const { gameState, startGame, rollDice, resetGame, getCurrentPlayer } = useGame();
+  const { gameState, startGame, rollDice, resetGame, getCurrentPlayer, flashingSquares } = useGame();
 
   return (
     <div className="app">
@@ -19,6 +20,7 @@ function App() {
             <GameBoard 
               players={gameState.players}
               currentPlayerPosition={getCurrentPlayer().position}
+              flashingSquares={flashingSquares}
             />
           </div>
           
@@ -33,6 +35,14 @@ function App() {
           </div>
         </div>
       </main>
+      
+      {gameState.specialMoveMessage && (
+        <SpecialMoveMessage
+          message={gameState.specialMoveMessage}
+          type={gameState.specialMoveMessage.includes('Snake') ? 'snake' : 'ladder'}
+          onAnimationEnd={() => {}}
+        />
+      )}
       
       <footer className="app-footer">
         <p>Built with React & TypeScript | Deploy with GitHub Pages</p>

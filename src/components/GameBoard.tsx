@@ -8,9 +8,10 @@ import './GameBoard.css';
 interface GameBoardProps {
   players: Player[];
   currentPlayerPosition?: number;
+  flashingSquares?: { [key: number]: 'snake' | 'ladder' };
 }
 
-const GameBoard: React.FC<GameBoardProps> = ({ players, currentPlayerPosition }) => {
+const GameBoard: React.FC<GameBoardProps> = ({ players, currentPlayerPosition, flashingSquares = {} }) => {
   const boardSize = BOARD_CONFIG.size;
   
   const renderBoard = () => {
@@ -24,6 +25,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ players, currentPlayerPosition })
         const hasSnake = !!findSnakeAtPosition(squareNumber);
         const hasLadder = !!findLadderAtPosition(squareNumber);
         const isHighlighted = currentPlayerPosition === squareNumber;
+        const flashType = flashingSquares[squareNumber];
         
         squares.push(
           <Square
@@ -33,6 +35,8 @@ const GameBoard: React.FC<GameBoardProps> = ({ players, currentPlayerPosition })
             hasSnake={hasSnake}
             hasLadder={hasLadder}
             isHighlighted={isHighlighted}
+            isSnakeFlashing={flashType === 'snake'}
+            isLadderFlashing={flashType === 'ladder'}
           />
         );
       }
